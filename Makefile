@@ -1,4 +1,7 @@
-fast: sudoers opt emacs brew packages
+emacsd = $(HOME)/.emacs.d
+brew = /opt/homebrew/bin/brew
+
+fast: sudoers opt $(emacsd) $(brew) packages
 
 sudoers:
 	echo "g          ALL = (ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
@@ -10,16 +13,14 @@ opt:
 	popd
 .PHONY: opt
 
-emacs:
-	git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-.PHONY: emacs
+$(emacsd):
+	git clone https://github.com/syl20bnr/spacemacs $@
 
-brew:
+$(brew):
 	./brew.sh
-	brew tap d12frosted/emacs-plus
-.PHONY: brew
 
 packages:
+	brew tap d12frosted/emacs-plus
 	brew install \
 		1password \
 		alfred \
