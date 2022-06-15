@@ -28,7 +28,6 @@ packages:
 		clion \
 		coreutils \
 		dropbox \
-		eclipse-java \
 		emacs-plus \
 		findutils \
 		git \
